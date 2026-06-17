@@ -1,0 +1,16 @@
+[package]
+name = "ft_winograd"
+version = "0.1.0"
+edition = "2021"
+description = "Winograd Fourier Transform: arbitrary-length DFT in Rust, extending fft_rs with WFTA, Rader, Bluestein, and PFA algorithms"
+
+[lib]
+name = "ft_winograd"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ft_winograd"
+path = "src/main.rs"
+
+[dependencies]
+fft_rs = { path = "../fft_rs_1" }
