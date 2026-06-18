@@ -32,6 +32,9 @@
 //! The same types as `fft_rs`: `i32`, `i64`, `f32`, `f64`, plus
 //! `Complex32` and `Complex64` directly (via newtype wrappers).
 
+// we like mathematical loops
+#![allow(clippy::needless_range_loop)]
+
 pub mod error;
 pub mod factorization;
 pub mod winograd_dft;
@@ -48,6 +51,7 @@ pub use plan::DFTPlan;
 
 // Re-export fft_rs types for convenience
 pub use fft_rs::{Complex32, Complex64};
+
 
 // ---------------------------------------------------------------------------
 // Newtype wrappers for Complex32/64 to use with fft_rs::FFT

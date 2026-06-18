@@ -7,6 +7,9 @@
 //! the Winograd/Bluestein/Rader algorithm dispatch, then verifies
 //! the result against a naive O(n²) DFT.
 
+// we like mathematical loops
+#![allow(clippy::needless_range_loop)]
+
 use ft_winograd::DFT;
 use fft_rs::Complex64;
 
