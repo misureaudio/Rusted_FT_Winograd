@@ -71,7 +71,7 @@ pub fn pfa_index_forward(m: usize, n1: usize, n2: usize) -> (usize, usize) {
 pub fn pfa_index_inverse(m1: usize, m2: usize, n1: usize, n2: usize) -> usize {
     let (c1, c2) = crt_coefficients(n1, n2);
     let n = n1 * n2;
-    (m1 as usize * c1 + m2 as usize * c2) % n
+    (m1 * c1 + m2 * c2) % n
 }
 
 /// In-place Good-Thomas PFA forward transform.

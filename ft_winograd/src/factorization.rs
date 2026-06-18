@@ -31,9 +31,9 @@ pub fn factorize(n: usize) -> Vec<(usize, usize)> {
     let mut remaining = n;
 
     while d * d <= remaining {
-        if remaining % d == 0 {
+        if remaining.is_multiple_of(d) {
             let mut exp = 0;
-            while remaining % d == 0 {
+            while remaining.is_multiple_of(d) {
                 remaining /= d;
                 exp += 1;
             }
@@ -72,7 +72,7 @@ pub fn is_prime(n: usize) -> bool {
     if n < 4 {
         return true;
     }
-    if n % 2 == 0 || n % 3 == 0 {
+    if n.is_multiple_of(2) || n.is_multiple_of(3) {
         return false;
     }
 
@@ -80,14 +80,14 @@ pub fn is_prime(n: usize) -> bool {
         if n == p {
             return true;
         }
-        if n % p == 0 {
+        if n.is_multiple_of(p) {
             return false;
         }
     }
 
     let mut d = n - 1;
     let mut s = 0usize;
-    while d % 2 == 0 {
+    while d.is_multiple_of(2) {
         d /= 2;
         s += 1;
     }
@@ -187,7 +187,7 @@ pub fn choose_strategy(n: usize) -> DftResult<TransformStrategy> {
     if is_prime(n) {
         if n <= THRESHOLD_RADER {
             let alpha = primitive_root(n)
-                .ok_or_else(|| DftError::NoPrimitiveRoot(n))?;
+                .ok_or(DftError::NoPrimitiveRoot(n))?;
             return Ok(TransformStrategy::Rader { p: n, primitive_root: alpha });
         } else {
             let m = next_power_of_two(2 * n - 1);
