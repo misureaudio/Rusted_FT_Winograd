@@ -7,7 +7,7 @@
 //! minimal convolution kernels. For larger primes, FFT-based convolution
 //! is used via the Convolution Theorem.
 
-use fft_rs::Complex64;
+use fft_rs_ma::Complex64;
 use crate::factorization::primitive_root;
 use crate::winograd_conv::winograd_cyclic_conv;
 

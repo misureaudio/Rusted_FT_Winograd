@@ -12,7 +12,7 @@
 //! Memory: requires O(M) where M = next_pow2(2n-1). For n = 8,000,000,
 //! M = 16,777,216 → ~268 MB for Complex64.
 
-use fft_rs::{Complex64, FFT};
+use fft_rs_ma::{Complex64, FFT};
 use crate::C64;
 use crate::factorization::next_power_of_two;
 

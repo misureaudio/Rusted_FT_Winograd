@@ -49,23 +49,23 @@ pub use error::{DftError, DftResult, validate_length};
 pub use fft_arbitrary::DFT;
 pub use plan::DFTPlan;
 
-// Re-export fft_rs types for convenience
-pub use fft_rs::{Complex32, Complex64};
+// Re-export fft_rs_ma types for convenience
+pub use fft_rs_ma::{Complex32, Complex64};
 
 
 // ---------------------------------------------------------------------------
-// Newtype wrappers for Complex32/64 to use with fft_rs::FFT
+// Newtype wrappers for Complex32/64 to use with fft_rs_ma::FFT
 // ---------------------------------------------------------------------------
 //
-// The orphan rule prevents us from implementing fft_rs::IntoSample for
-// fft_rs::Complex32/64. Instead, we use newtype wrappers that implement
+// The orphan rule prevents us from implementing fft_rs_ma::IntoSample for
+// fft_rs_ma::Complex32/64. Instead, we use newtype wrappers that implement
 // IntoSample and delegate to the inner complex type.
 
-use fft_rs::IntoSample;
+use fft_rs_ma::IntoSample;
 
 /// Newtype wrapper around Complex64 that implements IntoSample.
 ///
-/// This allows passing complex-valued data directly to fft_rs::FFT,
+/// This allows passing complex-valued data directly to fft_rs_ma::FFT,
 /// which is needed for Bluestein's algorithm and FFT-based convolution.
 #[derive(Clone, Copy)]
 #[repr(transparent)]

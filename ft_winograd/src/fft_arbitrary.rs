@@ -7,8 +7,8 @@
 //! - Coprime composite n ≤ 500 → PFA + recursive short DFTs
 //! - Everything else → Bluestein's algorithm (universal fallback)
 
-use fft_rs::Complex64;
-use fft_rs::fft_core::{ComplexSample, IntoSample};
+use fft_rs_ma::Complex64;
+use fft_rs_ma::fft_core::{ComplexSample, IntoSample};
 use crate::error::{DftResult, validate_length};
 use crate::factorization::{choose_strategy, TransformStrategy};
 
@@ -36,7 +36,7 @@ where
 {
     /// Create a new `DFT` from a `Vec<T>`.
     ///
-    /// Unlike `fft_rs::FFT`, this accepts **any positive integer length**,
+    /// Unlike `fft_rs_ma::FFT`, this accepts **any positive integer length**,
     /// not just powers of 2.
     pub fn new(data: Vec<T>) -> DftResult<Self> {
         validate_length(data.len())?;
@@ -109,7 +109,7 @@ where
 pub(crate) fn dft_dispatch<C: ComplexSample>(data: &mut [C], strategy: &TransformStrategy) {
     match strategy {
         TransformStrategy::Radix2 { log2n } => {
-            // Delegate to fft_rs via FFT<T::Complex> — but we can't use that
+            // Delegate to fft_rs_ma via FFT<T::Complex> — but we can't use that
             // directly for complex data. Use inline radix-2.
             radix2_forward(data, *log2n);
         }

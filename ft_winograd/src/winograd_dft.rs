@@ -3,7 +3,7 @@
 //! These implementations achieve the minimum number of non-trivial
 //! multiplications for each length, as derived from Winograd's algorithm.
 
-use fft_rs::fft_core::ComplexSample;
+use fft_rs_ma::fft_core::ComplexSample;
 
 // ---------------------------------------------------------------------------
 // DFT-3: 0 non-trivial multiplications, 5 additions
@@ -358,7 +358,7 @@ pub fn naive_idft<C: ComplexSample>(input: &[C]) -> Vec<C> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use fft_rs::Complex64;
+    use fft_rs_ma::Complex64;
 
     fn approx_eq(a: Complex64, b: Complex64, eps: f64) -> bool {
         (a.re - b.re).abs() < eps && (a.im - b.im).abs() < eps

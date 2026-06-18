@@ -4,7 +4,7 @@
 //! 2D index `(m₁, m₂)` where `m₁ ∈ [0, n₁)`, `m₂ ∈ [0, n₂)` and `gcd(n₁, n₂) = 1`.
 //! This eliminates twiddle factors between stages.
 
-use fft_rs::fft_core::ComplexSample;
+use fft_rs_ma::fft_core::ComplexSample;
 
 /// Compute gcd using Euclid's algorithm.
 #[inline]
@@ -243,7 +243,7 @@ pub fn pfa_dft_inverse<C: ComplexSample>(data: &mut [C], n1: usize, n2: usize,
 #[cfg(test)]
 mod tests {
     use super::*;
-    use fft_rs::Complex64;
+    use fft_rs_ma::Complex64;
 
     fn approx_eq(a: Complex64, b: Complex64, eps: f64) -> bool {
         (a.re - b.re).abs() < eps && (a.im - b.im).abs() < eps

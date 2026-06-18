@@ -1,10 +1,10 @@
 //! Error types for arbitrary-length DFT computation.
 
 use std::fmt;
-use fft_rs::FftError;
+use fft_rs_ma::FftError;
 
 /// Maximum DFT size for arbitrary-length transforms.
-/// Extended beyond fft_rs's 2^24 to support ~67M samples,
+    /// Extended beyond fft_rs_ma's 2^24 to support ~67M samples,
 /// since Bluestein's algorithm pads to the next power of 2.
 pub const MAX_DFT_SIZE: usize = 1 << 26;
 
@@ -19,7 +19,7 @@ pub enum DftError {
     FactorizationFailed(usize),
     /// No primitive root found for the given prime (should not happen mathematically).
     NoPrimitiveRoot(usize),
-    /// Wrapped error from the fft_rs backend (power-of-2 FFT).
+    /// Wrapped error from the fft_rs_ma backend (power-of-2 FFT).
     FftError(FftError),
 }
 
@@ -42,7 +42,7 @@ impl fmt::Display for DftError {
                 "No primitive root found for prime {} (mathematically impossible)",
                 p
             ),
-            DftError::FftError(e) => write!(f, "fft_rs error: {}", e),
+            DftError::FftError(e) => write!(f, "fft_rs_ma error: {}", e),
         }
     }
 }

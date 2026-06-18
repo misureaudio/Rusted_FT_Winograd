@@ -11,7 +11,7 @@
 #![allow(clippy::needless_range_loop)]
 
 use ft_winograd::DFT;
-use fft_rs::Complex64;
+use fft_rs_ma::Complex64;
 
 fn naive_dft(input: &[f64]) -> Vec<Complex64> {
     let n = input.len();

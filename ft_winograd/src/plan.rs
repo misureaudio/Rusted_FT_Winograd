@@ -3,9 +3,9 @@
 //! Pre-computes chirp sequences for Bluestein's algorithm, avoiding
 //! redundant FFTs of the chirp kernel on subsequent calls.
 
-use fft_rs::Complex64;
-use fft_rs::fft_core::ComplexSample;
-use fft_rs::IntoSample;
+use fft_rs_ma::Complex64;
+use fft_rs_ma::fft_core::ComplexSample;
+use fft_rs_ma::IntoSample;
 use crate::error::{DftResult, validate_length};
 use crate::factorization::{choose_strategy, TransformStrategy};
 use std::marker::PhantomData;
@@ -185,7 +185,7 @@ fn cast_to_c64<C: ComplexSample>(data: &mut [C]) -> Option<&mut [Complex64]> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use fft_rs::Complex64;
+    use fft_rs_ma::Complex64;
     use crate::winograd_dft::naive_dft;
 
     fn approx_eq(a: Complex64, b: Complex64, eps: f64) -> bool {

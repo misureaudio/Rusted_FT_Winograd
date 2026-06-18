@@ -4,7 +4,7 @@
 //! achieve the minimum number of multiplications. For larger lengths,
 //! the FFT-based approach (Convolution Theorem) is used.
 
-use fft_rs::fft_core::ComplexSample;
+use fft_rs_ma::fft_core::ComplexSample;
 use crate::factorization::next_power_of_two;
 
 /// Compute cyclic convolution for small lengths using Winograd kernels.
@@ -145,7 +145,7 @@ fn bit_reverse(x: usize, log2n: usize) -> usize {
 // ---------------------------------------------------------------------------
 
 mod kernels {
-    use fft_rs::fft_core::ComplexSample;
+    use fft_rs_ma::fft_core::ComplexSample;
 
     /// Length-2 cyclic convolution: h = g ⊗ d (mod x²-1)
     pub fn conv2<C: ComplexSample>(g: &[C], d: &[C]) -> Vec<C> {
@@ -220,7 +220,7 @@ pub use kernels::{conv2, conv4, conv6};
 #[cfg(test)]
 mod tests {
     use super::*;
-    use fft_rs::Complex64;
+    use fft_rs_ma::Complex64;
 
     fn approx_eq(a: Complex64, b: Complex64, eps: f64) -> bool {
         (a.re - b.re).abs() < eps && (a.im - b.im).abs() < eps
